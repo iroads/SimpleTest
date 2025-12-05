@@ -29,10 +29,16 @@ public class Attach {
         return message;
     }
 
+//    public static void browserConsoleLogs() {
+//        attachAsText(
+//                "Browser console logs",
+//                String.join("\n", Selenide.getWebDriverLogs(BROWSER))
+//        );
+//    }
     public static void browserConsoleLogs() {
         attachAsText(
                 "Browser console logs",
-                String.join("\n", Selenide.getWebDriverLogs(BROWSER))
+                String.join("\n", Selenide.getWebDriverLogs("browser"))
         );
     }
 
