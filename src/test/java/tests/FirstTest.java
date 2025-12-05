@@ -24,7 +24,8 @@ public class FirstTest {
     @BeforeAll
     static void setup() {
         Configuration.browser = "chrome";   // Можно заменить на firefox, edge
-        Configuration.browserVersion = "122.0";           // версия из browsers.json
+        Configuration.browserVersion = "122.0";
+        // версия из browsers.json
 
         Configuration.remote = "http://212.109.192.164:8091/wd/hub";
         DesiredCapabilities capabilities = new DesiredCapabilities();
