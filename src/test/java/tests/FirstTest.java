@@ -33,10 +33,10 @@ public class FirstTest {
         );
     }
 
-//    @AfterEach
-//    void addAttach(){
-//        Attach.screenshotAs("LastScreenshot");
-//    }
+    @AfterEach
+    void addAttach(){
+        Attach.screenshotAs("LastScreenshot");
+    }
 
     @Test
     @Tag("ui")
