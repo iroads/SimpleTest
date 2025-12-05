@@ -9,6 +9,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.Map;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -22,7 +25,16 @@ public class FirstTest {
     static void setup() {
         Configuration.browser = "chrome";   // Можно заменить на firefox, edge
         Configuration.browserVersion = "122.0";           // версия из browsers.json
+
         Configuration.remote = "http://212.109.192.164:8091/wd/hub";
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+
+        Configuration.browserCapabilities = capabilities;
+
     }
 
 
@@ -38,6 +50,7 @@ public class FirstTest {
         Attach.screenshotAs("LastScreenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
+        Attach.addVideo();
     }
 
     @Test
