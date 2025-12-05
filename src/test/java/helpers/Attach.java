@@ -50,7 +50,7 @@ public class Attach {
     }
 
     public static URL getVideoUrl() {
-        String videoUrl = "http://localhost:4444" + sessionId() + ".mp4";
+        String videoUrl = "http://localhost:4444/video/" + sessionId() + ".mp4";
         try {
             return new URL(videoUrl);
         } catch (MalformedURLException e) {
