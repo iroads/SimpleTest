@@ -10,7 +10,7 @@ repositories {
     mavenCentral()
 }
 
-def allureVersion = "2.21.0"
+def allureVersion = "2.27.0"
 
 allure {
     report {

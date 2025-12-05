@@ -3,13 +3,16 @@ package tests;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.logevents.SelenideLogger.step;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FirstTest {
@@ -30,11 +33,19 @@ public class FirstTest {
         );
     }
 
+//    @AfterEach
+//    void addAttach(){
+//        Attach.screenshotAs("LastScreenshot");
+//    }
+
     @Test
     @Tag("ui")
     void googleSearchTest() {
         // Открываем
-        open("http://212.109.192.164:8080");
+        step("Открываем приложение", () ->
+                open("http://212.109.192.164:8080")
+        );
+
 
         // Вводим текст в поиске
         $x("//input[@id='username']").setValue("Selenide").pressEnter();
