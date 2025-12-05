@@ -28,17 +28,30 @@ allure {
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation (
-            'org.junit.jupiter:junit-jupiter'
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter',
+            'com.codeborne:selenide:7.3.2',
+            // Allure JUnit5 интеграция
+            'io.qameta.allure:allure-junit5:2.27.0',
+
+            // Allure Selenide listener (красивые шаги, скриншоты)
+            'io.qameta.allure:allure-selenide:2.27.0'
     )
 }
 
-test {
+tasks.withType(Test) {
     useJUnitPlatform()
 
     testLogging {
         lifecycle {
-        events "started", "skipped", "failed", "standard_error", "standard_out"
-        exceptionFormat "short"}
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+tasks.register('first_test', Test) {
+    useJUnitPlatform {
+        includeTags("ui")
     }
 }
