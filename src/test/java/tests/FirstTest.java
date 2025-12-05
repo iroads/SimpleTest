@@ -36,6 +36,8 @@ public class FirstTest {
     @AfterEach
     void addAttach(){
         Attach.screenshotAs("LastScreenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
     }
 
     @Test
