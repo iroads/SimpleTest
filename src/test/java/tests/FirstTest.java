@@ -31,7 +31,8 @@ public class FirstTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.of(
                 "enableVNC", true,
-                "enableVideo", true
+                "enableVideo", true,
+                "enableLog", true
         ));
 
         Configuration.browserCapabilities = capabilities;
