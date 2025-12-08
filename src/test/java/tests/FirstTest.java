@@ -9,9 +9,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
+import java.util.logging.Level;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -23,12 +27,20 @@ public class FirstTest {
 
     @BeforeAll
     static void setup() {
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+
+// DevTools logging
+        LoggingPreferences logPrefs = new LoggingPreferences();
+        logPrefs.enable(LogType.BROWSER, Level.ALL);
+        chromeOptions.setCapability("goog:loggingPrefs", logPrefs);
         Configuration.browser = "chrome";   // Можно заменить на firefox, edge
         Configuration.browserVersion = "122.0";
         // версия из browsers.json
 
         Configuration.remote = "http://212.109.192.164:8091/wd/hub";
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         capabilities.setCapability("selenoid:options", Map.of(
                 "enableVNC", true,
                 "enableVideo", true,
